@@ -31,7 +31,7 @@ alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"
 
 
 text = input("").upper()
-if len(text) < 1000 and isinstance(text,str):
+if isinstance(text,str):
     # Print line 1 of braille
     for m in range(0,3):
         # Iterate through the input
