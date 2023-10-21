@@ -26,6 +26,7 @@ class Stack:
         for char in self.items:
             for digit in char:
                 print(digit,end=" ")
+            print("")
 
 
 
@@ -34,24 +35,51 @@ stack = Stack()
 numbers = ['1','2','3','4','5','6','7','8','9']
 operators = ['+', '-', '*', '/']
 
-input = str(input(""))
+# input = str(input(""))
 
-# Iterate from the end of the prefix number
-for char in reversed(input):
-    # If char in number from 1 to 9 push into the stack
-    if char in numbers:
-        stack.push(char)
-    # If char is operators, take 1st and 2nd number out of the stack
-    # and combine with operator
-    elif char in operators:
-        first_number = stack.pop()
-        second_number = stack.pop()
-        result = first_number + second_number + char
-        stack.push(result)
-    # Skip if char is 0
-    elif char == 0:
-        input.pop()
+
+# # Iterate from the end of the prefix number
+# for char in reversed(input):
+#     # If char in number from 1 to 9 push into the stack
+#     if char in numbers:
+#         stack.push(char)
+#     # If char is operators, take 1st and 2nd number out of the stack
+#     # and combine with operator
+#     elif char in operators:
+#         first_number = stack.pop()
+#         second_number = stack.pop()
+#         result = first_number + second_number + char
+#         stack.push(result)
+#     # Skip if char is 0
+#     elif char == 0:
+#         input.pop()
+
+# # Print the result out
+# stack.show()
+
+
+
+user_input = str(input(""))
+while user_input != '0':
+    for char in reversed(user_input):
+        # If char in number from 1 to 9 push into the stack
+        if char in numbers:
+            stack.push(char)
+        # If char is operators, take 1st and 2nd number out of the stack
+        # and combine with operator
+        elif char in operators:
+            first_number = stack.pop()
+            second_number = stack.pop()
+            result = first_number + second_number + char
+            stack.push(result)
+        # Skip if char is 0
+        elif char == 0:
+            input.pop()
+    user_input = str(input(""))
 
 # Print the result out
 stack.show()
+    
+
+
 
