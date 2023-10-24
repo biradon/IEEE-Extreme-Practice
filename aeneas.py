@@ -2,57 +2,36 @@ import math
 
 def find_destination_point(degree, hypotenuse):
     destination_point = []
-    if degree == 0 or degree == 360:
-        y = 0
-        x = hypotenuse
-    if degree == 90:   
-        y = hypotenuse
-        x = 0
-    if degree == 180:
-        x = -hypotenuse
-        y = 0
-    if degree == 270:  
-        x = 0
-        y = -hypotenuse
-    if degree < 90:
-        y = float(math.sin(math.radians(degree)) * hypotenuse)
-        x = float(math.cos(math.radians(degree)) * hypotenuse)
-    if degree > 91 and degree < 180:
-        degree = 180 - degree
-        y = (float(math.sin(math.radians(degree)) * hypotenuse))
-        x = -(float(math.cos(math.radians(degree)) * hypotenuse))
-    if degree > 181 and degree < 270:
-        degree = 270 - degree
-        y = -(float(math.sin(math.radians(degree)) * hypotenuse))
-        x = -(float(math.cos(math.radians(degree)) * hypotenuse))
-    if degree > 271 and degree <360:
-        degree = 360 - degree
-        y = -(float(math.sin(math.radians(degree)) * hypotenuse))
-        x = (float(math.cos(math.radians(degree)) * hypotenuse))
+    x = hypotenuse * math.cos(math.radians(degree))
+    y = hypotenuse * math.sin(math.radians(degree))
     destination_point.append(round(x, 2))
     destination_point.append(round(y, 2))
     return destination_point
 
 def find_distance(x1,y1,x2,y2):
-    distance = round(math.sqrt((x2-x1)**2 + (y2-y1)**2),2)
+    distance = math.sqrt((x2-x1)**2 + (y2-y1)**2)
     return distance
 
-distance = float(input())
 char_and_degree = []
-points = []
+points = [[0,0]]
 result = 0
+
+# first line of the input
+distance = int(input())
+
 i = 0
 while i < 26:
     user_input = list(input().split(' '))
     add_to_list = {'char': user_input[0].upper(),
-                   'degree': float(user_input[1])
-                   }
+                'degree': float(user_input[1])
+                }
     char_and_degree.append(add_to_list)
     i+= 1
 
-
+# User input paragraph
 paragraph = input().upper()
 
+# Iretate every letter in the paragraph
 for i in range(len(paragraph)):
     # First character
     if i == 0:
@@ -72,7 +51,6 @@ for i in range(len(paragraph)):
                     point = find_destination_point(char_and_degree[j]['degree'], distance)
                     points.append(point)
 
-
 # Find the distance between 2 points
 for i in range(len(points)):
     # If in the last point stop the loop
@@ -81,5 +59,4 @@ for i in range(len(points)):
     else:
         result += find_distance(points[i][0], points[i][1], points[i+1][0], points[i+1][1])
 
-print(result)
-
+print(math.ceil(result))
