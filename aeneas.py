@@ -4,8 +4,8 @@ def find_destination_point(degree, hypotenuse):
     destination_point = []
     x = hypotenuse * math.cos(math.radians(degree))
     y = hypotenuse * math.sin(math.radians(degree))
-    destination_point.append(round(x, 2))
-    destination_point.append(round(y, 2))
+    destination_point.append(x)
+    destination_point.append(y)
     return destination_point
 
 def find_distance(x1,y1,x2,y2):
